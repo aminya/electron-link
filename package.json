@@ -16,7 +16,7 @@
     "@babel/plugin-transform-async-to-generator": "^7.10.1",
     "@babel/register": "^7.10.3",
     "dedent": "0.7.0",
-    "electron": "6.1.12",
+    "electron": "9.0.5",
     "electron-mocha": "^8.2.2",
     "mocha": "^8.0.1",
     "rimraf": "3.0.2",

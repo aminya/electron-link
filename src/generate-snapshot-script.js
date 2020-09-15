@@ -23,6 +23,7 @@ module.exports = async function (cache, options) {
     }
     if (!moduleASTs[relativeFilePath]) {
       const source = fs.readFileSync(filePath, 'utf8')
+      const cachedTransformPromise = cache.get({filePath, content: source})
       let foundRequires = []
       const transform = new FileRequireTransform({
         filePath,
@@ -38,7 +39,7 @@ module.exports = async function (cache, options) {
         }
       })
 
-      const cachedTransform = await cache.get({filePath, content: source})
+      const cachedTransform = await cachedTransformPromise
       const useCachedTransform =
         cachedTransform ?
         cachedTransform.requires.every(r => (transform.resolveModulePath(r.unresolvedPath) || r.unresolvedPath) === r.resolvedPath) :
